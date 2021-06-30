@@ -9,11 +9,12 @@ STEP = PI/50
 # C_A = np.array([[0.59545192, 0.72251469],
 #                 [0.72251469, 4.30814793]])
 
-C_A = np.diag([4, 2])
+C_A = np.diag([4, 1])
 
 C_A_INV = LA.inv(C_A)
 
-MU_A = np.array([-0.3, -0.3])
+# MU_A = np.array([-0.3, -0.3])
+MU_A = np.array([0.1, .5])
 
 
 # C_B = np.array([[3.21247396, 1.60506457],

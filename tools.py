@@ -4,7 +4,7 @@ import math
 
 def plot_ellipse(covariance, ax, label_t="", linestyle='', alpha_val=0.1, color_def='black', center = [0, 0]):
     w, v = np.linalg.eig(covariance)
-    if(np.abs(w[np.argmin(w)]) < 1e-10):
+    if(np.abs(np.min(w)) < 1e-10):
         e = v[:, np.argmax(w)]
         k = np.sqrt(w[np.argmax(w)])
 

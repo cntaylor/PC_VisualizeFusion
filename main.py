@@ -10,7 +10,7 @@ ax = plt.axes()
 
 def generate_C_c_inv(k, theta):
     R = np.array([[np.cos(theta), np.sin(theta)],
-                    [-np.sin(theta), np.cos(theta)]]).reshape(constant.DIMS, constant.DIMS)
+                    [-np.sin(theta), np.cos(theta)]])
 
     D = np.zeros((2, 2))
     D[0][0] = k
@@ -26,7 +26,7 @@ def binary_search(theta, lo = constant.K_INIT, hi = 1):
     #     if
 
     # print(generate_C_c_inv(hi, theta))
-    print(formulas.mahalanobis_distance(generate_C_c_inv(hi/2, theta)))
+    print('mah distance',formulas.mahalanobis_distance(generate_C_c_inv(hi/2, theta)))
     # print(formulas.mahalanobis_distance(generate_C_c_inv(lo, theta)))
     # print(chi2.ppf((1 - 0.05), df=2))
  
@@ -57,7 +57,7 @@ def main_perform_fusion(theta):
 
 
     #upper bound of k
-    u = min(e.T @ LA.inv(constant.C_A) @ e, e.T @ LA.inv(constant.C_B) @ e)
+    u = 1/max(e.T @ constant.C_A @ e, e.T @ constant.C_B @ e)
     print(u)
 
     binary_search(theta, hi = u)
@@ -69,6 +69,9 @@ if __name__ == "__main__":
     tools.plot_ellipse(constant.C_B, ax)
     tools.plot_ellipse(constant.C_A_INV, ax, color_def="blue", alpha_val=1)
     tools.plot_ellipse(constant.C_B_INV, ax, color_def="blue", alpha_val=1)
+    plt.grid(True)
+    ax.set_aspect('equal')
     for t in theta:
         main_perform_fusion(t)
+    print("Original Mahalanobis distance is:",formulas.mahalanobis_distance(np.zeros((2,2))))
     plt.show()

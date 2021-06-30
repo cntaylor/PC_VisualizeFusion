@@ -16,5 +16,5 @@ def mahalanobis_distance(C_c_inv):
     x_ac = (C_ac @ (inv(constant.C_A) @ constant.MU_A.T - C_c_inv @ x_c.T)).T
     x_bc = (C_bc @ (inv(constant.C_B) @ constant.MU_B.T - C_c_inv @ x_c.T)).T
 
-    f = ((x_ac - x_bc) @ LA.inv(C_ac+C_bc) @ (x_ac - x_bc).T)
+    f = ((x_ac - x_bc) @ C_abc_inv @ (x_ac - x_bc).T)
     return f
