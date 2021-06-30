@@ -26,7 +26,7 @@ def binary_search(theta, lo = constant.K_INIT, hi = 1):
     #     if
 
     # print(generate_C_c_inv(hi, theta))
-    print('mah distance',formulas.mahalanobis_distance(generate_C_c_inv(hi/2, theta)))
+    print('mah distance',formulas.mahalanobis_distance(generate_C_c_inv(hi*.99, theta)))
     # print(formulas.mahalanobis_distance(generate_C_c_inv(lo, theta)))
     # print(chi2.ppf((1 - 0.05), df=2))
  
