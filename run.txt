@@ -38,9 +38,6 @@ def binary_search(theta, lo = constant.K_INIT, hi = 1):
             hi = k
         else:
             break
-    print(hi)
-    print(k)
-    print("=================")
     return k
 
 
@@ -59,8 +56,11 @@ def main_perform_fusion(theta):
 
     #upper bound of k
     u = 1/max(e.T @ constant.C_A @ e, e.T @ constant.C_B @ e)
+    print(u)
 
-    return binary_search(theta, hi = u), u
+
+
+    binary_search(theta, hi = u)
 
 
 if __name__ == "__main__":
@@ -72,9 +72,8 @@ if __name__ == "__main__":
     plt.grid(True)
     ax.set_aspect('equal')
     for t in theta:
-        k, u = main_perform_fusion(t)
+        k = main_perform_fusion(t)
         C_c_inv = generate_C_c_inv(k, t)
-        C_c_inv_2 = generate_C_c_inv(u, t)
-        # tools.plot_ellipse(C_c_inv_2, ax, color_def='green', alpha_val=1)
         tools.plot_ellipse(C_c_inv, ax, color_def='red', alpha_val=1)
     plt.show()
+

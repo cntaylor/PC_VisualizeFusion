@@ -29,3 +29,5 @@ MU_B = np.array([0.1, -0.14])
 K_INIT = 0.1
 
 I = 1e-10*np.identity(2)
+
+TOL = 1e-3
